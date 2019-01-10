@@ -1,12 +1,9 @@
-# TRON
+# README: TRON
 
 This is a modified version of a Tron-41 bot that intelligently chooses the maximizing move based on a game state. 
 
- ___                       _               
- / _ \__   _____ _ ____   _(_) _____      __
-| | | \ \ / / _ \ '__\ \ / / |/ _ \ \ /\ / /
-| |_| |\ V /  __/ |   \ V /| |  __/\ V  V / 
- \___/  \_/ \___|_|    \_/ |_|\___| \_/\_/  
+
+ ############  OVERVIEW  ############
 
 
 The bot begins by taking in the current state of the game in the form of an asp (TronProblem), and executes the following procedure to determine the maximizing action:
@@ -66,11 +63,7 @@ Running alpha-beta cutoff to find the maximizing action
 
 The alpha-beta cutoff method contains a private method eval_func which determines the score of a given state, passed in to the alpha-beta helper methods get_max_alpha_beta_cutoff and get_min_alpha_beta_cutoff. The alpha-beta cutoff function determines the maximizing action.
 
- __  __       _   _            _   _                 
-|  \/  | ___ | |_(_)_   ____ _| |_(_) ___  _ __  ___ 
-| |\/| |/ _ \| __| \ \ / / _` | __| |/ _ \| '_ \/ __|
-| |  | | (_) | |_| |\ V / (_| | |_| | (_) | | | \__ \
-|_|  |_|\___/ \__|_| \_/ \__,_|\__|_|\___/|_| |_|___/
+############  MOTIVATIONS  ############
 
 Evaluating states based on free space
 When playing the game, a bot will lose when it collides with a wall. If I program the bot to only move in a valid direction, then it will never move into a wall unless it is out of free space. Thus, it is intuitive and required to evaluate states based on the amount of free space available to the bot. Regardless of the location of the opponent, distance from powerups, whether or not we have armor, etc., free space is the most important factor when deciding the quality of a given state.
