@@ -10,7 +10,7 @@ free_space_timeouts = []
 
 # Change this to adjust players and map
 class Argument_Defaults:
-    MAP = "./maps/empty_room.txt"
+    MAP = "./empty_room.txt"
     MAX_WAIT = 0.3
     BOTS = ["user", "wall"]
     IMAGE_DELAY = 0.2
