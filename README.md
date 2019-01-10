@@ -1,6 +1,7 @@
 # README: TRON
 
-This is a modified version of a Tron-41 bot that intelligently chooses the maximizing move based on a game state. 
+This is a modified version of a Tron-41 bot that intelligently chooses the maximizing move based on a game state. Games
+are played in the terminal. Code is written in python3.
 
 
  ############  OVERVIEW  ############
