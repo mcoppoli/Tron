@@ -1,11 +1,11 @@
-## TRON
+# TRON
 
 This is a modified version of a Tron-41 bot that intelligently chooses the maximizing move based on a 
 game state. Gamesare played in the terminal. Code is written in python3. Run simulation with the command 
 "python3 gamerunner.py".
 
 
-# Overview
+## Overview
 
 
 The bot begins by taking in the current state of the game in the form of an asp (TronProblem), and executes 
@@ -42,11 +42,11 @@ When implementing the alpha-beta cutoff search algorithm, I face a tradeoff betw
 By iterating deeper into the search I increase accuracy scores, but lose time and risk a timeout. To 
 account for this, I calculate the optimal max depth to use in the following way:
                                         
-bot free space + opponent’s free space  #  maximum search depth
-##############################################################
-less than 100                           #   7
-between 100 and 250                     #   6
-greater than 250                        #   5
+bot free space + opponent’s free space | maximum search depth
+-------------------------------------------------------------
+less than 100                          |   7
+between 100 and 250                    |   6
+greater than 250                       |   5
 
 Thus with less moves left (closer to a terminal state), I tradeoff speed to find terminal states, or 
 states very near terminal, because with so little states left it is unlikely the algo will timeout. 
@@ -85,7 +85,7 @@ The alpha-beta cutoff method contains a private method eval_func which determine
 state, passed in to the alpha-beta helper methods get_max_alpha_beta_cutoff and get_min_alpha_beta_cutoff. 
 The alpha-beta cutoff function determines the maximizing action.
 
-############  MOTIVATIONS  ############
+## Motivations
 
 Evaluating states based on free space
 When playing the game, a bot will lose when it collides with a wall. If I program the bot to only move 
