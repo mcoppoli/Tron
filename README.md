@@ -26,10 +26,19 @@ determine all the free space available to each bot at the current game state.
 The alpha-beta cutoff algorithm uses an evaluation function to determine the reward of each state 
 (discussed in greater detail in later section). The function uses of a free space weight and power up 
 weights which change based on the relative location to the opponent and power ups. Initially, 
-free_space_weighting is .85, power_up_weighting is .05, and armor_weighting is .1. However, if the opponent 
-is not reachable (if opponent_loc is not in free_space) or if there are no power ups on the board, I 
-redefine these weights so that power_up_weighting becomes 0 and free_space_weighting becomes .9. The way 
-in which these weights are used is discussed later.
+```
+free_space_weighting =.85
+power_up_weighting = .05 
+armor_weighting = .1. 
+```
+However, if the opponent is not reachable (if opponent_loc is not in free_space) or if there are no power ups on the board, I 
+redefine these weights:
+```
+free_space_weighting =.9
+power_up_weighting = 0 
+armor_weighting = .1
+```
+The way in which these weights are used is discussed later.
 
 ### Determine max depth used for ab-cut
 When implementing the alpha-beta cutoff search algorithm, I face a tradeoff between speed and accuracy. 
@@ -41,11 +50,11 @@ states very near terminal, because with so little states left it is unlikely the
 Otherwise, I do not search as deep, because with so many possible moves, the number of evaluations is 
 very large.
 
-The provided asp.evaluate_state only determines the winner in a terminal state. If I had the computing 
-power to run every possible move to termination of game, then the eval_func wouldn’t be necessary, but 
+The function ```asp.evaluate_state``` only determines the winner in a terminal state. If I had the computing 
+power to run every possible move to termination of game, then ```eval_func``` wouldn’t be necessary, but 
 this is not the case, so I was required to set a cutoff on the alpha beta search algorithm and run the 
-eval_func on the state at the end of the cutoff to approximate the value of that state for the bot. The 
-eval_func returns the sum of the following values:
+```eval_func``` on the state at the end of the cutoff to approximate the value of that state for the bot.
+```eval_func``` returns the sum of the following values:
 
 ```
 free_space_weight: 
@@ -79,11 +88,11 @@ The alpha-beta cutoff function determines the maximizing action.
 When playing the game, a bot will lose when it collides with a wall. If I program the bot to only move 
 in a valid direction, then it will never move into a wall unless it is out of free space. Thus, it is 
 intuitive and required to evaluate states based on the amount of free space available to the bot. Regardless 
-of the location of the opponent, distance from powerups, whether or not we have armor, etc., free space is 
+of the location of the opponent, distance from powerups, whether or not the bot has armor, etc., free space is 
 the most important factor when deciding the quality of a given state.
 
 ### Evaluating states based on distance to power up
-We include a small weight for the distance to the nearest power up relative to the opponent, so that if we 
+I include a small weight for the distance to the nearest power up relative to the opponent, so that if the bot 
 have a choice of moves where all moves result in having close to the same ratio of free space available as 
 the opponent, I want my bot to move to a position that is closer to a power up. Thus the bot will still 
 prioritize free space, but if it has the choice to move towards a power up with all other things (relatively) 
@@ -92,7 +101,7 @@ equal, it will choose to do so.
 ### Evaluating states based on armor
 Armor is a valuable powerup to possess as it prevents loss from colliding into a wall. Therefore, if in 
 a given state I have armor and the opponent does not, the probability of my win is more likely and the 
-evaluation of that state should be higher, and thus we chose a weight of 1.0. Conversely, if the opponent 
+evaluation of that state should be higher, and thus I chose a weight of 1.0. Conversely, if the opponent 
 has armor and I do not, I am less likely to win and the evaluation of that state should be lower and I chose 
 a weight of 0.0. If both players have armor or do not have armor, neither player is more or less likely to 
 win, and the armor weight is 0.5.
@@ -100,7 +109,7 @@ win, and the armor weight is 0.5.
 ### Alpha-beta cutoff and max depth
 Alpha beta cutoff is one of the most versatile and efficient algorithms for searching for optimal game states 
 in an adversarial search problem. Because efficiency is a high priority, I used alpha-beta pruning to limit 
-the number of states we expand, and a cutoff to prevent the algorithm from spending too much time searching 
+the number of states expanded, and a cutoff to prevent the algorithm from spending too much time searching 
 far into the future. In early stages of the game, the cutoff is set to 5 generations, but as the total amount 
 of free space and the total number of possible moves left in the game decreases, I increase this cutoff to 
 encounter more terminal states and return a more accurate and informed decision.
