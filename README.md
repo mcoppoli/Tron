@@ -1,11 +1,11 @@
-README: TRON
+## TRON
 
 This is a modified version of a Tron-41 bot that intelligently chooses the maximizing move based on a 
 game state. Gamesare played in the terminal. Code is written in python3. Run simulation with the command 
 "python3 gamerunner.py".
 
 
- ############  OVERVIEW  ############
+# Overview
 
 
 The bot begins by taking in the current state of the game in the form of an asp (TronProblem), and executes 
