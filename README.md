@@ -1,7 +1,7 @@
 # TRON
 
 This is a Tron game environment and bot that intelligently chooses the maximizing move based on a
-game state. Games are played in the terminal. Code is written in python3. Run simulation with the command
+game state. Code is written in python3. Run simulation with the command 
 ```python3 gamerunner.py```.
 
 
