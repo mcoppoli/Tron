@@ -8,13 +8,20 @@ import numpy as np
 
 free_space_timeouts = []
 
-# Change this to adjust players and map
 class Argument_Defaults:
-    MAP = "./empty_room.txt"
+
+    """
+    Change these fields to adjust game settings
+        MAP: path name of map being played on
+        MAX_WAIT: amount of time a bot has to decide before timeout (move up)
+        BOTS = [player1, player2]
+        IMAGE_DELAY: amount of time between prints
+    """
+    MAP = "./maps/joust.txt"
     MAX_WAIT = 0.3
-    BOTS = ["user", "wall"]
+    BOTS = ["user", "user"]
     IMAGE_DELAY = 0.2
-    
+
 def run_game(asp, bots, visualizer=None, delay=0.2, max_wait=0.3, colored=True):
     """
     Inputs:
