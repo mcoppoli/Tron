@@ -10,10 +10,9 @@ class UserBot:
         self.opposite_moves = {'U':'D', 'D':'U', 'L':'R', 'R':'L', 'NA':'NA'}
         self.opposite_player = {0:1, 1:0, '1':'0', '0':'1'}
         self.free_space = []
-        self.free_space_weighting = 0.75
-        self.power_up_weighting = 0.1
-        self.armor_weighting = 0.15
-        self.speed_weighting = 0.0
+        self.free_space_weighting = 0.85
+        self.power_up_weighting = 0.05
+        self.armor_weighting = 0.1
 
     def decide(self, asp):
         """
@@ -48,7 +47,6 @@ class UserBot:
             self.free_space_weighting = 0.9
             self.power_up_weighting = 0.0
             self.armor_weighting = 0.1
-            self.speed_weighting = 0.0
 
         # determine max depth of ab-cutoff based on free space avaliable
         if len(self.free_space) + len(self.opponent_free_space) < 100:
@@ -89,11 +87,9 @@ class UserBot:
         player_armor = state.player_has_armor(player)
         power_up_symbols = list(CellType.powerup_list)
 
-        # if we already have a powerup, do not consider that powerup
+        # if we already have armor, do not consider armor in weight
         if player_armor:
             power_up_symbols.remove(CellType.ARMOR)
-        if not self.opponent_reachable:
-            power_up_symbols.remove(CellType.SPEED)
 
         power_up_info = []
         for position in self.initial_power_up_positions:
@@ -307,7 +303,6 @@ class UserBot:
         self.free_space_weighting = 0.75
         self.power_up_weighting = 0.1
         self.armor_weighting = 0.15
-        self.speed_weighting = 0.0
 
     #end UserBot
 
